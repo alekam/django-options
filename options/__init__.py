@@ -1,5 +1,5 @@
 # major, minor, patch
-VERSION = (0, 1, 0)
+VERSION = (0, 1, 1)
 
 
 def get_version():
@@ -12,10 +12,11 @@ def get_version():
 from .models import *
 
 
-def get_option(name, default=None):
+def get_option(name, default=None, store=True):
     qs = Option.objects.filter(name=name)
     if not qs.exists():
-        set_option(name, default)
+        if store:
+            set_option(name, default)
         return default
     elif qs.count() == 1:
         return qs.get().get_value()
