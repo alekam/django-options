@@ -9,10 +9,8 @@ def get_version():
     return version
 
 
-from .models import *
-
-
 def get_option(name, default=None, store=True):
+    from .models import Option
     qs = Option.objects.filter(name=name)
     if not qs.exists():
         if store:
@@ -38,5 +36,6 @@ def set_option(name, value=None):
             for val in value:
                 set_option(name, val)
     else:
+        from .models import Option
         opt = Option.objects.create(name=name)
         opt.set_value(value)
