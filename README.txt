@@ -45,11 +45,20 @@ It'll be equivivalent to::
 
 Byt now you can change this option in the admin area.
 
+Function `get_option` has three arguments:
+
+ * option name (is required)
+ * default value
+ * store default value in DB if option with the name is not exist
+
 
 Provided template tags and libraries
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-No any template tags and libraries provided
+    {% load options %}
+    {% option 'MY_OPTION' 3 %}
+
+Роssible arguments are option name (required) and default value (optional).
 
 
 Provided management commands
